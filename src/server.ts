@@ -24,6 +24,7 @@ server.use((req: Request, res: Response) => {
 });
 
 const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+
     if (err.status) {
         res.status(err.status);
     } else {
@@ -31,7 +32,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
     }
 
     if (err.message) {
-        res.status(err.message);
+        res.json({ error: err.message });
     } else {
         res.json({ error: 'ERRO - CONTATE O SUPORTE' });
     }
